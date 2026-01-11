@@ -1,0 +1,53 @@
+﻿@using Fiorello.Areas.Admin.ViewModels.ProductVM
+@model IEnumerable<GetAllProductVM>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Products</h4>
+            <a class="btn btn-success btn-rounded btn-fw" asp-controller="Product" asp-action="Create">
+                <i class="mdi mdi-library-plus"></i>
+            </a>
+            <div class="table-responsive pt-3">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Category</th>
+                            <th>Settings</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/img/@item.MainImage" alt="@item.Name" style="width: 70px; height: 70px; object-fit: cover; border-radius: 5px;" />
+                                </td>
+                                <td>@item.Name</td>
+                                <td>@item.Price AZN</td>
+                                <td>@item.CategoryName</td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <a class="btn btn-info btn-rounded btn-fw" asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id">
+                                            <i class="mdi mdi-alert-circle-outline"></i>
+                                        </a>
+                                        <a class="btn btn-primary btn-rounded btn-fw" asp-controller="Product" asp-action="Update" asp-route-id="@item.Id">
+                                            <i class="mdi mdi-border-color"></i>
+                                        </a>
+                                        <form method="post" asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id" style="display:inline;">
+                                            <button type="submit" class="btn btn-danger btn-rounded btn-fw">
+                                                <i class="mdi mdi-delete"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+﻿@using Fiorello.Areas.Admin.ViewModels.ProductVM
+@model UpdateProductVM
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Update</h4>
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Main image</label>
+                    <img width="200px" height="200px" src="~/img/@Model.MainPhoto" alt="Main Photo">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Additional images</label>
+                    @foreach (var photo in Model.AdditionalPhotos)
+                    {
+                        <div class="col-md-3 mb-3" id="photo-@photo.Id">
+                            <div class="card">
+                                <img src="~/img/@photo.Image" class="card-img-top" />
+
+                                <div class="card-body text-center p-2">
+                                    <button type="button"
+                                            class="btn btn-danger btn-sm delete-photo"
+                                            data-id="@photo.Id">
+                                        Sil
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Main image</label>
+                    <input asp-for="MainImage" class="form-control">
+                    <span class="text-danger my-1" asp-validation-for="MainImage"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Additional images</label>
+                    <input asp-for="AdditionalImages" class="form-control">
+                    <span class="text-danger my-1" asp-validation-for="AdditionalImages"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Name</label>
+                    <input asp-for="Name" class="form-control" placeholder="Name">
+                    <span class="text-danger my-1" asp-validation-for="Name"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Description</label>
+                    <input asp-for="Description" class="form-control" placeholder="Description">
+                    <span class="text-danger my-1" asp-validation-for="Description"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Price</label>
+                    <input asp-for="Price" class="form-control" placeholder="Price">
+                    <span class="text-danger my-1" asp-validation-for="Price"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Category</label>
+                    <select class="form-control" asp-for="CategoryId" asp-items="@ViewBag.Categories"></select>
+                    <span class="text-danger my-1" asp-validation-for="CategoryId"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <button class="btn btn-light">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>

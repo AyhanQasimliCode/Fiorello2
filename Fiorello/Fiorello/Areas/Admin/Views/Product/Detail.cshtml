@@ -1,0 +1,58 @@
+﻿@using Fiorello.Areas.Admin.ViewModels.ProductVM
+@model DetailProductVM
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Product Detail</h4>
+
+            <div class="form-group">
+                <label>Main Image:</label><br />
+                @if (!string.IsNullOrEmpty(Model.MainPhoto))
+                {
+                    <img src="~/img/@Model.MainPhoto" width="200" height="200" alt="Main Photo" />
+                }
+                else
+                {
+                    <p>No main image available</p>
+                }
+            </div>
+
+            <div class="form-group">
+                <label>Additional Images:</label><br />
+                @if (Model.AdditionalPhotos != null && Model.AdditionalPhotos.Any())
+                {
+                    foreach (var img in Model.AdditionalPhotos)
+                    {
+                        <img src="~/img/@img" width="150" height="150" class="me-1 mb-1" alt="Additional Photo" />
+                    }
+                }
+                else
+                {
+                    <p>No additional images</p>
+                }
+            </div>
+
+            <div class="form-group">
+                <label>Name:</label>
+                <p>@Model.Name</p>
+            </div>
+
+            <div class="form-group">
+                <label>Description:</label>
+                <p>@Model.Description</p>
+            </div>
+
+            <div class="form-group">
+                <label>Price:</label>
+                <p>@Model.Price.ToString("C")</p>
+            </div>
+
+            <div class="form-group">
+                <label>Category:</label>
+                <p>@Model.CategoryName</p>
+            </div>
+
+            <a asp-action="Index" class="btn btn-light mt-2">Back</a>
+        </div>
+    </div>
+</div>

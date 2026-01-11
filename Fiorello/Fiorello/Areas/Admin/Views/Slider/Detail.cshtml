@@ -1,0 +1,14 @@
+﻿@using Fiorello.Areas.Admin.ViewModels.SliderVM
+@model DetailSliderVM
+
+<div>
+    <h4>Slider Detail</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Image:</dt>
+        <dd class="col-sm-10">
+            <img src="~/img/@Model.Image" style="width:500px; height:auto;" />
+        </dd>
+    </dl>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

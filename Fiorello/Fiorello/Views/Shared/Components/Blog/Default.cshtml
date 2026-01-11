@@ -1,0 +1,22 @@
+﻿@using Fiorello.Models
+@model IEnumerable<Blog>
+
+@foreach (var blog in Model)
+{
+    <div class="col-md-6 col-lg-4">
+        <div class="item">
+            <div class="img position-relative">
+                <img src="~/img/@blog.Image" class="img-fluid" alt="">
+                <div class="date rounded bg-light position-absolute py-1 px-2">
+                    <span>@blog.CreatedDate.ToString("dd.MM.yyyy")</span>
+                </div>
+            </div>
+            <div class="text mt-3 text-center px-5">
+                <h5>@blog.Title</h5>
+                <p class="text-black-50">
+                    @blog.Description
+                </p>
+            </div>
+        </div>
+    </div>
+}

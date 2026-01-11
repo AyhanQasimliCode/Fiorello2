@@ -1,0 +1,30 @@
+﻿@using Fiorello.Areas.Admin.ViewModels.SliderVM
+@model UpdateSliderVM
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Update Slider</h4>
+
+            <form asp-action="Update" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Current Image:</label>
+                    <div class="mb-3">
+                        <img src="~/img/@Model.Image" style="width: 200px; height: auto; border-radius: 5px; border: 1px solid #ddd;" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="NewPhoto">Choose New Photo</label>
+                    <input asp-for="NewPhoto" class="form-control" accept="image/*" />
+                    <span asp-validation-for="NewPhoto" class="text-danger"></span>
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary btn-rounded btn-fw">Update</button>
+                    <a asp-action="Index" class="btn btn-light btn-rounded btn-fw">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

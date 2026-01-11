@@ -1,0 +1,22 @@
+﻿@using Fiorello.ViewModels
+@model List<Fiorello.Models.Product>
+
+@foreach (var item in Model)
+{
+    <div class="col-sm-6 col-md-4 col-lg-3 mt-3 product">
+        <div class="product-item text-center" data-id="@item.CategoryId">
+            <div class="img">
+                <a href="">
+                    <img src="~/img/@item.ProductImages.FirstOrDefault(pi => pi.IsMain)?.Image" class="img-fluid" alt="@item.Name">
+                </a>
+            </div>
+            <div class="title mt-3">
+                <h6>@item.Name</h6>
+            </div>
+            <div class="price">
+                <button class="add-to-basket" data-id="@item.Id">Add to cart</button>
+                <span class="text-black-50">@item.Price</span>
+            </div>
+        </div>
+    </div>
+}

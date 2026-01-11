@@ -1,0 +1,39 @@
+﻿@using Fiorello.ViewModels
+@model List<BasketDetailVM>
+
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Price</th>
+                <th scope="col">Count</th>
+                <th scope="col">TotalPrice</th>
+                <th scope="col">Settings</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                decimal totalPriceSum = 0;
+            }
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th><img width="100px" height="100px" src="~/img/@item.Image" /></th>
+                    <td>@item.Name</td>
+                    <td>@item.Category</td>
+                    <td>@item.Price azn</td>
+                    <td>@item.Count</td>
+                    <td>@item.TotalPrice</td>
+                    <td><button class="btn btn-danger">Delete</button></td>
+                </tr>
+
+                totalPriceSum += item.TotalPrice;
+            }
+        </tbody>
+    </table>
+    <h5>@totalPriceSum azn</h5>
+</div>
