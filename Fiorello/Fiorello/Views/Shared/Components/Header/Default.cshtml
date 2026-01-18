@@ -73,11 +73,29 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Account</a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a class="nav-link" asp-action="Update" asp-controller="Account">@User.Identity.Name</a>
+
+                                if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                                {
+                                    <a class="nav-link" asp-area="Admin" asp-action="Index" asp-controller="Dashboard">Admin Panel</a>
+                                }
+                            }
+                            else
+                            {
+                                <a class="nav-link" href="#">Account</a>
+                            }
                             <ul class="list-unstyled py-3 elements">
-                                <li class=""><a class="px-1"asp-action="Register" asp-controller="Account">Register</a></li>
-                                <li class=""><a class="px-1"asp-action="Login" asp-controller="Account">Login</a></li>
-                                <li class=""><a class="px-1" asp-action="Logout" asp-controller="Account">Logout</a></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li class=""><a class="px-1" asp-action="Logout" asp-controller="Account">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li class=""><a class="px-1" asp-action="Register" asp-controller="Account">Register</a></li>
+                                    <li class=""><a class="px-1" asp-action="Login" asp-controller="Account">Login</a></li>
+                                }
 
                             </ul>
                         </li>

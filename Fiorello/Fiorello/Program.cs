@@ -1,6 +1,8 @@
 using Fiorello.Data;
 using Fiorello.Models;
 using Fiorello.Services;
+using Fiorello.Services.Implementations;
+using Fiorello.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,6 +25,7 @@ builder.Services.Configure<IdentityOptions>(opt =>
     opt.Password.RequireDigit = true;
 
     opt.User.RequireUniqueEmail = true;
+    opt.SignIn.RequireConfirmedEmail = true;
 
     opt.Lockout.MaxFailedAccessAttempts = 3;
     opt.Lockout.AllowedForNewUsers = true;
@@ -33,6 +36,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
 builder.Services.AddScoped<LayoutService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IFileService, FileService>();
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
